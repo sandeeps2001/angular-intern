@@ -1,0 +1,23 @@
+<div class="p">
+<div class="form">
+        <h1>SUPER ADMIN LOGIN</h1>
+       <input placeholder="email"  type="text" [(ngModel)]="email">
+       <br>
+       <input placeholder="password" type="text" [(ngModel)]="password">
+       <br>
+       <br>
+       <div class="sf">
+       <button (click)="submitform()">submit</button>
+</div>
+</div>
+</div>
+<div class = "p1">
+<button nz-button [nzType]="'primary'" (click)="showModal()"><span>Show Modal</span></button>
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+      <ng-container *nzModalContent>
+        <p>Content one</p>
+        <p>Content two</p>
+        <p>Content three</p>
+      </ng-container>
+    </nz-modal>
+    </div>

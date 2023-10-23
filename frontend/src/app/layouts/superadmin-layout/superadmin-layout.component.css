@@ -1,0 +1,16 @@
+ .c{
+   background-color: rgb(179, 179, 179);
+}
+.sidebar{
+    border: 2px solid black;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: red;
+    width:2rem;
+} 
+
+::ng-deep body{
+  background-color: #ededed;
+}

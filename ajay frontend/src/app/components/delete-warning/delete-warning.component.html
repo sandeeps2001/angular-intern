@@ -1,0 +1,12 @@
+<div class="w-96">
+    <h1 mat-dialog-title>
+        Delete
+    </h1>
+    <div mat-dialog-content>
+        <p class="font-medium"><span class="text-red-600">Would you like to delete</span> {{ channel.name || post.title }}?</p>
+    </div>
+    <div mat-dialog-actions align="center" class="p-2 flex gap-3 justify-between">
+        <button mat-button mat-dialog-close class="block font-medium text-gray-500">No, Not now</button>
+        <button mat-button (click)="onConfirm(channel._id || post._id ?? '')" mat-dialog-close class="block font-medium text-green-500">Yes, I'm sure</button>
+    </div>
+</div>

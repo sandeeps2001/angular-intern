@@ -1,0 +1,55 @@
+<div class="flex flex-row justify-between">
+    <h2 mat-dialog-title>
+        {{ this.isUpdateForm ? 'Edit User' : 'Invite User'}}
+    </h2>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close class="font-medium text-red-600 hover:text-red-400">Cancel</button>
+    </mat-dialog-actions>
+</div>
+<mat-dialog-content class="mat-typography w-96">
+    <form [formGroup]="form" (ngSubmit)="submitForm()">
+        <div class="mt-3">
+            <label for="createname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+            <input type="text" id="createname" placeholder="John Doe" formControlName="fullName"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
+        </div>
+        <div class="mt-3">
+            <label for="createemail" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+            <input email type="email" id="createemail" formControlName="userEmail"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                placeholder="name@company.com">
+        </div>
+        <div class="mt-3">
+            <label for="channelslist"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Channels</label>
+            <div class="flex flex-wrap gap-3 text-sm font-medium text-gray-900 sm:flex">
+                <div *ngFor="let channel of channels" class="">
+                    <input type="checkbox" name="channelName" [value]="channel._id"
+                        [checked]="this.channelValues.includes(channel._id)"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-1"
+                        (change)="onChannelsChange($event)">
+                    <label [for]="channel._id"
+                        class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{
+                        channel.name }}</label>
+                </div>
+            </div>
+        </div>
+        <div class="mt-3">
+            <label class="mt-4 text-sm font-medium text-gray-900">Permissions</label>
+            <div class="flex">
+                <div class="flex items-center mr-4" *ngFor="let data of Data; let i=index">
+                    <label class="mt-2 mr-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                        <input type="checkbox" [value]="data.value" [checked]="permissionsValues.includes(data.value)"
+                            class="h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-1"
+                            (change)="onPermissionsChange($event)" />
+                        {{data.name}}
+                    </label>
+                </div>
+            </div>
+        </div>
+        <button type="submit" [disabled]="!form.valid"
+            class="disabled:opacity-50 w-full mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            {{ isUpdateForm ? 'Update User' : 'Invite User'}}
+        </button>
+    </form>
+</mat-dialog-content>
